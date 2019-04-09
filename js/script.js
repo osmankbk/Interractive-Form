@@ -43,14 +43,7 @@ $design.on('change', function (){
 
 });
 
-/*const $all = $('input[name="all"]');
-const $frameWorks = $('input[name="js-frameworks"]');
-const $libs = $('input[name="js-libs"]');
-const $express = $('input[name="express"]');
-const $node = $('input[name="node"]');
-const $buildTools = $('input[name="build-tools"]');
-const $npm = $('input[name="npm"]');
-*/
+
 $('input[name="js-frameworks"]').on('click', function (){
   if($('input[name="js-frameworks"]').prop(":checked", true)){
     $('input[name="express"]').attr('disabled', 'disabled');
@@ -60,12 +53,3 @@ $('input[name="js-frameworks"]').on('click', function (){
     $('input[name="express"]').attr('disabled', false);
   }
 });
-
-/*$($express).on('click', function (){
-  if($express.prop(":checked", true)){
-    $frameWorks.attr('disabled', 'disabled');
-  } else if($express.prop(":checked", false)){
-    $frameWorks.attr('disabled', false);
-  }
-});
-*/
