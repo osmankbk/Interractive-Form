@@ -21,7 +21,7 @@ $title.on('change', function(){
   }
 });
 
-
+//DESING SECTION
 $design.on('change', function (){
   if( $('#design option:selected').val() === 'js puns'){
     $('#color option').removeAttr("selected");
@@ -45,7 +45,7 @@ $design.on('change', function (){
 
 });
 
-
+//ACTIVITIES SECTION
 $('input[name="js-frameworks"]').on('click', function (){
   if($('input[name="js-frameworks"]').prop(":checked", true)){
     $('input[name="express"]').attr('disabled', 'disabled');
@@ -62,10 +62,11 @@ $('input[name="express"]').on('click', function (){
   }
 });
 
-
+//PAYMENT SECTION
 $('#payment option[value="credit card"]').attr('selected', true);
 $('p').parent().hide();
 $('#payment option[value="select_method"]').prop('disabled', true);
+
 $payment.on('change', function(){
   if($('#payment option:selected').val() === 'credit card'){
     $('p').parent().hide();
