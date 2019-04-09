@@ -42,10 +42,30 @@ $design.on('change', function (){
   }
 
 });
-$('.activities').on('change', function (){
-  if( $('.activities input[name="all"]').prop(":checked", true)){
-    $('.activities input[name="js-libs"]').attr('disabled', true);
+
+/*const $all = $('input[name="all"]');
+const $frameWorks = $('input[name="js-frameworks"]');
+const $libs = $('input[name="js-libs"]');
+const $express = $('input[name="express"]');
+const $node = $('input[name="node"]');
+const $buildTools = $('input[name="build-tools"]');
+const $npm = $('input[name="npm"]');
+*/
+$('input[name="js-frameworks"]').on('click', function (){
+  if($('input[name="js-frameworks"]').prop(":checked", true)){
+    $('input[name="express"]').attr('disabled', 'disabled');
+  } else if($('input[name="js-frameworks"]').prop(":checked", false)){
+    $('input[name="express"]').attr('disabled', false);
   } else {
-    $('.activities input').attr('disabled', false);
+    $('input[name="express"]').attr('disabled', false);
   }
 });
+
+/*$($express).on('click', function (){
+  if($express.prop(":checked", true)){
+    $frameWorks.attr('disabled', 'disabled');
+  } else if($express.prop(":checked", false)){
+    $frameWorks.attr('disabled', false);
+  }
+});
+*/
