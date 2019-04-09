@@ -49,7 +49,13 @@ $('input[name="js-frameworks"]').on('click', function (){
     $('input[name="express"]').attr('disabled', 'disabled');
   } else if($('input[name="js-frameworks"]').prop(":checked", false)){
     $('input[name="express"]').attr('disabled', false);
-  } else {
-    $('input[name="express"]').attr('disabled', false);
   }
+});
+
+$('input[name="express"]').on('click', function (){
+  if($('input[name="express"]').prop(":checked", true)){
+    $('input[name="js-frameworks"]').attr('disabled', 'disabled');
+  } else if($('input[name="express"]').prop(":checked", false)){
+    $('input[name="js-frameworks"]').attr('disabled', false);
+  } 
 });
