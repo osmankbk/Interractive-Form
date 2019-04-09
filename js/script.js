@@ -1,13 +1,15 @@
 const $name = $('#name');
 const $email = $('#mail');
-const $cardNumber = $('#cc-num');
-const $zip = $('#zip');
-const $cvv = $('#cvv');
+const $cardNumber = $('.col-6 col');
+const $zip = $('.col-3 col');
+const $cvv = $('.col-3 col');
+const $expiration = $('#exp-month');
 const $title = $('#title');
 const $otherTitle = $('#other-title');
 const $design = $('#design');
 const $color = $('#color');
 const $activities = $('.activities');
+const $payment = $('#payment');
 $name.focus();
 $otherTitle.hide();
 
@@ -57,5 +59,24 @@ $('input[name="express"]').on('click', function (){
     $('input[name="js-frameworks"]').attr('disabled', 'disabled');
   } else if($('input[name="express"]').prop(":checked", false)){
     $('input[name="js-frameworks"]').attr('disabled', false);
-  } 
+  }
+});
+
+
+$('#payment option[value="credit card"]').attr('selected', true);
+$('p').parent().hide();
+$('#payment option[value="select_method"]').prop('disabled', true);
+$payment.on('change', function(){
+  if($('#payment option:selected').val() === 'credit card'){
+    $('p').parent().hide();
+    $('#credit-card').show();
+  } else if ($('#payment option:selected').val() === 'paypal'){
+      $("p:eq(0)").parent().show();
+      $('#credit-card').hide();
+      $("p:eq(1)").parent().hide();
+  } else if($('#payment option:selected').val() === 'bitcoin'){
+    $("p:eq(1)").parent().show();
+    $('#credit-card').hide();
+    $("p:eq(0)").parent().hide();
+  }
 });
