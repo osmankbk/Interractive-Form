@@ -46,21 +46,14 @@ $design.on('change', function (){
 });
 
 //ACTIVITIES SECTION
-$('input[name="js-frameworks"]').on('click', function (){
-  if($('input[name="js-frameworks"]').prop(":checked", true)){
-    $('input[name="express"]').attr('disabled', 'disabled');
-  } else if($('input[name="js-frameworks"]').prop(":checked", false)){
-    $('input[name="express"]').attr('disabled', false);
+$('.activities input').on('click', function (event){
+  if($('input [name="js-frameworks"]').prop("checked", true)){
+    $('input [name="express"]').attr('disabled', 'disabled');
+  } else if($('input [name="js-frameworks"]').prop(":checked", false)){
+    $('input [name="express"]').attr('disabled', false);
   }
 });
 
-$('input[name="express"]').on('click', function (){
-  if($('input[name="express"]').prop(":checked", true)){
-    $('input[name="js-frameworks"]').attr('disabled', 'disabled');
-  } else if($('input[name="express"]').prop(":checked", false)){
-    $('input[name="js-frameworks"]').attr('disabled', false);
-  }
-});
 
 //PAYMENT SECTION
 $('#payment option[value="credit card"]').attr('selected', true);
