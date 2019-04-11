@@ -13,6 +13,7 @@ const $payment = $('#payment');
 $name.focus();
 $otherTitle.hide();
 
+
 $title.on('change', function(){
   if( $('#title option:selected').text() === 'Other'){
     $otherTitle.show();
@@ -46,15 +47,109 @@ $design.on('change', function (){
 });
 
 //ACTIVITIES SECTION
-$('.activities input').on('click', function (event){
-  if($('input [name="js-frameworks"]').prop("checked", true)){
-    $('input [name="express"]').attr('disabled', 'disabled');
-  } else if($('input [name="js-frameworks"]').prop(":checked", false)){
-    $('input [name="express"]').attr('disabled', false);
-  }
+
+let amount = 0;
+let $totalAmount = $('<label>Total: $<span id="total"></span></label>');
+
+$('.activities').append($totalAmount);
+
+/*const activitiesDollar = (nameCheck, mula) =>{
+  const $check = $('input[name=' + mula + ']' ).prop('checked', true);
+    if($check){
+      amount += mula;
+    } else if(!$check){
+      amount -= mula;
+    }
+    $('#total').text(amount);
+}*/
+
+$('.activities input[name="all"]').on('change', function(event){
+  const checked = $(this).prop('checked');
+    if(checked){
+      amount += 200;
+      $('#total').text(amount);
+    } else {
+      amount -= 200;
+      $('#total').text(amount);
+    }
 });
 
 
+$('.activities input[name="js-frameworks"]').on('change', function(event){
+  const checked = $(this).prop('checked');
+    if(checked){
+      $('.activities input[name="express"]').attr('disabled', true);
+      amount += 100;
+      $('#total').text(amount);
+    } else {
+      $('.activities input[name="express"]').attr('disabled', false);
+      amount -= 100;
+      $('#total').text(amount);
+    }
+});
+
+$('.activities input[name="express"]').on('change', function(event){
+  const checked = $(this).prop('checked');
+    if(checked){
+      $('.activities input[name="js-frameworks"]').attr('disabled', true);
+      amount += 100;
+      $('#total').text(amount);
+    } else {
+      $('.activities input[name="js-frameworks"]').attr('disabled', false);
+      amount -= 100;
+      $('#total').text(amount);
+    }
+});
+
+$('.activities input[name="js-libs"]').on('change', function(event){
+  const checked = $(this).prop('checked');
+    if(checked){
+      $('.activities input[name="node"]').attr('disabled', true);
+      amount += 100;
+      $('#total').text(amount);
+    } else {
+      $('.activities input[name="node"]').attr('disabled', false);
+      amount -=  100;
+      $('#total').text(amount);
+    }
+
+});
+
+$('.activities input[name="node"]').on('change', function(event){
+  const checked = $(this).prop('checked');
+    if(checked){
+      $('.activities input[name="js-libs"]').attr('disabled', true);
+      amount += 100;
+      $('#total').text(amount);
+    } else {
+      $('.activities input[name="js-libs"]').attr('disabled', false);
+      amount -= 100;
+      $('#total').text(amount);
+    }
+
+});
+
+$('.activities input[name="build-tools"]').on('change', function(event){
+  const checked = $(this).prop('checked');
+    if(checked){
+      amount += 100;
+      $('#total').text(amount);
+    } else {
+      amount -= 100;
+      $('#total').text(amount);
+    }
+});
+
+$('.activities input[name="npm"]').on('change', function(event){
+  const checked = $(this).prop('checked');
+    if(checked){
+      amount +=100;
+      $('#total').text(amount);
+    } else {
+      amount -= 100;
+      $('#total').text(amount);
+    }
+});
 //PAYMENT SECTION
 $('#payment option[value="credit card"]').attr('selected', true);
 $('p').parent().hide();
