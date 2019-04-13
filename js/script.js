@@ -197,7 +197,7 @@ const validCardNum = (card) => {
 const validZib = (zip) => {
   return /^\d{5}$/.test(zip);
 }
-const validCcv = (cvv) => {
+const validCvv = (cvv) => {
   return /^\d{3}$/.test(cvv);
 }
 
@@ -221,5 +221,5 @@ const creatorOfListeners = (validator) => {
 $name.on('input', creatorOfListeners(validName));
 $email.on('input', creatorOfListeners(validEmail));
 $cardNumber.on('input', creatorOfListeners(validCardNum));
-$name.on('input', creatorOfListeners(validZib));
-$name.on('input', creatorOfListeners(validCcv));
+$zip.on('input', creatorOfListeners(validZib));
+$cvv.on('input', creatorOfListeners(validCvv));
