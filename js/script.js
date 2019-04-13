@@ -54,7 +54,7 @@ let $totalAmount = $('<label>Total: $<span id="total"></span></label>');
 $('.activities').append($totalAmount);
 
 /*const activitiesDollar = (nameCheck, mula) =>{
-  const $check = $('input[name=' + mula + ']' ).prop('checked', true);
+  const $check = $('input[name=' + nameCheck + ']' ).prop('checked', true);
     if($check){
       amount += mula;
     } else if(!$check){
@@ -62,10 +62,11 @@ $('.activities').append($totalAmount);
     }
     $('#total').text(amount);
 }*/
-
+$totalAmount.hide();
 $('.activities input[name="all"]').on('change', function(event){
   const checked = $(this).prop('checked');
     if(checked){
+      $totalAmount.show();
       amount += 200;
       $('#total').text(amount);
     } else {
@@ -169,3 +170,38 @@ $payment.on('change', function(){
     $("p:eq(0)").parent().hide();
   }
 });
+
+//VALIDATION SECTION
+
+const $nameError = $('<span>Please Enter A Valid Name!</span>');
+  $name.append($nameError);
+
+const validName = (name) => {
+  return /^[a-z]+$/i.test(name);
+}
+const validEmail = (email) => {
+  return /^[^@]+@[a-z]+\.[a-z]+$/i.test(email);
+}
+
+const validCardNum = (card) =>{
+  return /^\d{13}$/.test(card);
+}
+
+function tipAppear(show, element){
+  if(show){
+    element.style.display = "inherit";
+  } else {
+    element.style.display = "none";
+  }
+}
+const creatorOfListeners = (validator) =>{
+  return e => {
+    const text = e.target.value;
+    const valid = validator(text);
+    const showTip = text !== "" && !valid;
+    const tip = $nameError;
+    tipAppear(showTip, tip);
+  };
+}
+$name.on('input', creatorOfListeners(validName));
+$email.on('input', creatorOfListeners(validEmail));
