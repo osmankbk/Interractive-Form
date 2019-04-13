@@ -80,6 +80,7 @@ $('.activities input[name="js-frameworks"]').on('change', function(event){
   const checked = $(this).prop('checked');
     if(checked){
       $('.activities input[name="express"]').attr('disabled', true);
+      $totalAmount.show();
       amount += 100;
       $('#total').text(amount);
     } else {
@@ -93,6 +94,7 @@ $('.activities input[name="express"]').on('change', function(event){
   const checked = $(this).prop('checked');
     if(checked){
       $('.activities input[name="js-frameworks"]').attr('disabled', true);
+      $totalAmount.show();
       amount += 100;
       $('#total').text(amount);
     } else {
@@ -106,6 +108,7 @@ $('.activities input[name="js-libs"]').on('change', function(event){
   const checked = $(this).prop('checked');
     if(checked){
       $('.activities input[name="node"]').attr('disabled', true);
+      $totalAmount.show();
       amount += 100;
       $('#total').text(amount);
     } else {
@@ -120,6 +123,7 @@ $('.activities input[name="node"]').on('change', function(event){
   const checked = $(this).prop('checked');
     if(checked){
       $('.activities input[name="js-libs"]').attr('disabled', true);
+      $totalAmount.show();
       amount += 100;
       $('#total').text(amount);
     } else {
@@ -133,6 +137,7 @@ $('.activities input[name="node"]').on('change', function(event){
 $('.activities input[name="build-tools"]').on('change', function(event){
   const checked = $(this).prop('checked');
     if(checked){
+      $totalAmount.show();
       amount += 100;
       $('#total').text(amount);
     } else {
@@ -144,6 +149,7 @@ $('.activities input[name="build-tools"]').on('change', function(event){
 $('.activities input[name="npm"]').on('change', function(event){
   const checked = $(this).prop('checked');
     if(checked){
+      $totalAmount.show();
       amount +=100;
       $('#total').text(amount);
     } else {
@@ -183,18 +189,27 @@ const validEmail = (email) => {
   return /^[^@]+@[a-z]+\.[a-z]+$/i.test(email);
 }
 
-const validCardNum = (card) =>{
-  return /^\d{13}$/.test(card);
+const validCardNum = (card) => {
+  return /^\d{13}$/.test(card) &&
+        /^\d{16}$/.test(card);
 }
 
-function tipAppear(show, element){
+const validZib = (zip) => {
+  return /^\d{5}$/.test(zip);
+}
+const validCcv = (cvv) => {
+  return /^\d{3}$/.test(cvv);
+}
+
+
+const tipAppear = (show, element) => {
   if(show){
     element.style.display = "inherit";
   } else {
     element.style.display = "none";
   }
 }
-const creatorOfListeners = (validator) =>{
+const creatorOfListeners = (validator) => {
   return e => {
     const text = e.target.value;
     const valid = validator(text);
@@ -205,3 +220,6 @@ const creatorOfListeners = (validator) =>{
 }
 $name.on('input', creatorOfListeners(validName));
 $email.on('input', creatorOfListeners(validEmail));
+$cardNumber.on('input', creatorOfListeners(validCardNum));
+$name.on('input', creatorOfListeners(validZib));
+$name.on('input', creatorOfListeners(validCcv));
