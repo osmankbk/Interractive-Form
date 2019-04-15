@@ -76,6 +76,35 @@ legend {
 	width: 100%;
 }
 
+#nameError {
+  border-radius: 5px;
+  font-size: .75em;
+  position: absolute;
+  text-align: center;
+  left: 60.5%;
+  background: #2F558E;
+  top: 315px;
+  width: 160px;
+  padding: 7px 10px;
+  color: #fff;
+}
+
+#emailError {
+  border-radius: 5px;
+  font-size: .75em;
+  position: absolute;
+  text-align: center;
+  left: 60.5%;
+  background: #2F558E;
+  top: 394px;
+  width: 160px;
+  padding: 7px 10px;
+  color: #fff;
+}
+#error {
+  font-size: 1em;
+}
+
 input,
 select {
 	margin-bottom: 1.125em;

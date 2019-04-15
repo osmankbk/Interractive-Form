@@ -1,8 +1,8 @@
 const $name = $('#name');
 const $email = $('#mail');
-const $cardNumber = $('.col-6 col');
-const $zip = $('.col-3 col');
-const $cvv = $('.col-3 col');
+const $cardNumber = $('#cc-num');
+const $zip = $('#zip');
+const $cvv = $('#cvv');
 const $expiration = $('#exp-month');
 const $title = $('#title');
 const $otherTitle = $('#other-title');
@@ -10,9 +10,11 @@ const $design = $('#design');
 const $color = $('#color');
 const $activities = $('.activities');
 const $payment = $('#payment');
+const $button = $('button');
+const $colorDiv = $('#colors-js-puns');
+$colorDiv.hide();
 $name.focus();
 $otherTitle.hide();
-
 
 $title.on('change', function(){
   if( $('#title option:selected').text() === 'Other'){
@@ -23,6 +25,13 @@ $title.on('change', function(){
 });
 
 //DESING SECTION
+$design.on('change', function(e){
+  if($(this)){
+    $colorDiv.show();
+  } else {
+    $colorDiv.hide();
+  }
+});
 $design.on('change', function (){
   if( $('#design option:selected').val() === 'js puns'){
     $('#color option').removeAttr("selected");
@@ -47,26 +56,19 @@ $design.on('change', function (){
 });
 
 //ACTIVITIES SECTION
-
 let amount = 0;
 let $totalAmount = $('<label>Total: $<span id="total"></span></label>');
 
-$('.activities').append($totalAmount);
+$($totalAmount).insertAfter('.activities');
 
-/*const activitiesDollar = (nameCheck, mula) =>{
-  const $check = $('input[name=' + nameCheck + ']' ).prop('checked', true);
-    if($check){
-      amount += mula;
-    } else if(!$check){
-      amount -= mula;
-    }
-    $('#total').text(amount);
-}*/
 $totalAmount.hide();
+$('.activities input').on('change', function(){
+  $totalAmount.show();
+});
+
 $('.activities input[name="all"]').on('change', function(event){
   const checked = $(this).prop('checked');
     if(checked){
-      $totalAmount.show();
       amount += 200;
       $('#total').text(amount);
     } else {
@@ -80,7 +82,6 @@ $('.activities input[name="js-frameworks"]').on('change', function(event){
   const checked = $(this).prop('checked');
     if(checked){
       $('.activities input[name="express"]').attr('disabled', true);
-      $totalAmount.show();
       amount += 100;
       $('#total').text(amount);
     } else {
@@ -178,9 +179,26 @@ $payment.on('change', function(){
 });
 
 //VALIDATION SECTION
+const $nameError = $('<span id="nameError">Please Enter Only Letters!</span>');
+$($nameError).insertAfter($name);
+$nameError.hide();
 
-const $nameError = $('<span>Please Enter A Valid Name!</span>');
-  $name.append($nameError);
+const $emailError = $('<span id="emailError">Please Enter A Valid Email Address!</span>');
+$($emailError).insertAfter($email);
+$emailError.hide();
+
+const $cardError = $('<span id="cardError">Enter 13 or 16 Digits</span>');
+$($cardError).insertAfter($cardNumber);
+$cardError.hide();
+
+const $zipError = $('<span id="cardError">Enter 5 Digits</span>');
+$($zipError).insertAfter($zip);
+$zipError.hide();
+
+const $cvvError = $('<span id="cardError">Enter 3 Digits</span>');
+$($cvvError).insertAfter($cvv);
+
+$cvvError.hide();
 
 const validName = (name) => {
   return /^[a-z]+$/i.test(name);
@@ -190,8 +208,7 @@ const validEmail = (email) => {
 }
 
 const validCardNum = (card) => {
-  return /^\d{13}$/.test(card) &&
-        /^\d{16}$/.test(card);
+  return /^\d{13}(?:\d{3})?$/.test(card);
 }
 
 const validZib = (zip) => {
@@ -214,7 +231,7 @@ const creatorOfListeners = (validator) => {
     const text = e.target.value;
     const valid = validator(text);
     const showTip = text !== "" && !valid;
-    const tip = $nameError;
+    const tip = e.target.nextElementSibling;
     tipAppear(showTip, tip);
   };
 }
@@ -223,3 +240,21 @@ $email.on('input', creatorOfListeners(validEmail));
 $cardNumber.on('input', creatorOfListeners(validCardNum));
 $zip.on('input', creatorOfListeners(validZib));
 $cvv.on('input', creatorOfListeners(validCvv));
+
+$button.on('click', function (e){
+  $('input:not(#other-title)').each(function(e){
+    if($(this).val() === ""){
+      event.preventDefault();
+      $(this).css('border-color', 'red');
+      const $error = $('<span id="error">Fill the empty space</span>')
+      $error.insertBefore($(this));
+      }
+  });
+  $('.activities input').each(function(e){
+    const notChecked = $(this).prop('checked');
+    if(!notChecked){
+      event.preventDefault();
+      console.log("check atleast one box")
+    }
+  });
+});
