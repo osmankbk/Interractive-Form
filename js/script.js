@@ -163,12 +163,13 @@ $('#payment option[value="credit card"]').attr('selected', true);
 $('p').parent().hide();
 $('#payment option[value="select_method"]').prop('disabled', true);
 
+          //Help 1: the span is not hiding when the input is not empty
 $cardNumber.on('focus', function(e){
   const $empty = $('<span>Enter A Credit Number</span>')
   if($(this).val() === ""){
     $empty.insertBefore($cardNumber);
   } else if($(this).val() !== ""){
-    $empty.remove();
+    $empty.hide();
     }
   });
 
@@ -252,6 +253,7 @@ $cardNumber.on('input', creatorOfListeners(validCardNum));
 $zip.on('input', creatorOfListeners(validZib));
 $cvv.on('input', creatorOfListeners(validCvv));
 
+              //HELP 2
 $button.on('click', function (e){
   $('input:not(#other-title)').each(function(e){
     const $error = $('<span id="error">No empty spaces</span>');
