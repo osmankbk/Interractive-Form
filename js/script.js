@@ -168,10 +168,9 @@ $cardNumber.on('focus', function(e){
   const $empty = $('<span>Enter A Credit Number</span>')
   if($(this).val() === ""){
     $empty.insertBefore($cardNumber);
-  } else if($(this).val() !== ""){
-    $empty.hide();
     }
   });
+
 
 $payment.on('change', function(){
   if($('#payment option:selected').val() === 'credit card'){
@@ -264,11 +263,12 @@ $button.on('click', function (e){
     }
   });
   $('.activities input').each(function(e){
-    if($(this).prop('checked', true)){
-      return false;
-      console.log("box checked")
-    } else {
+    if($(this).prop('checked') === false){
       event.preventDefault();
+      console.log("box not checked")
+    } else if($(this).prop('checked') === true){
+      return false;
+      console.log("box checked");
 
     }
   });
