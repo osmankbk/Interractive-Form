@@ -82,7 +82,7 @@ legend {
   position: absolute;
   text-align: center;
   left: 60.5%;
-  background: #2F558E;
+  background: red;
   top: 315px;
   width: 160px;
   padding: 7px 10px;
@@ -95,7 +95,7 @@ legend {
   position: absolute;
   text-align: center;
   left: 60.5%;
-  background: #2F558E;
+  background: red;
   top: 394px;
   width: 160px;
   padding: 7px 10px;
@@ -103,6 +103,7 @@ legend {
 }
 #error {
   font-size: 1em;
+  color: red;
 }
 
 input,

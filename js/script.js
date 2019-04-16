@@ -163,6 +163,15 @@ $('#payment option[value="credit card"]').attr('selected', true);
 $('p').parent().hide();
 $('#payment option[value="select_method"]').prop('disabled', true);
 
+$cardNumber.on('focus', function(e){
+  const $empty = $('<span>Please Enter A Credit Number</span>')
+  if($(this).val() === ""){
+    $empty.insertBefore($cardNumber);
+  } else if($(this).val() !== ""){
+    $empty.remove();
+    }
+  });
+
 $payment.on('change', function(){
   if($('#payment option:selected').val() === 'credit card'){
     $('p').parent().hide();
@@ -189,16 +198,18 @@ $emailError.hide();
 
 const $cardError = $('<span id="cardError">Enter 13 or 16 Digits</span>');
 $($cardError).insertAfter($cardNumber);
+$($cardError).css('color', 'red');
 $cardError.hide();
 
 const $zipError = $('<span id="cardError">Enter 5 Digits</span>');
 $($zipError).insertAfter($zip);
+$($zipError).css('color', 'red');
 $zipError.hide();
 
 const $cvvError = $('<span id="cardError">Enter 3 Digits</span>');
-$($cvvError).insertAfter($cvv);
-
-$cvvError.hide();
+  $($cvvError).css('color', 'red');
+  $($cvvError).insertAfter($cvv);
+  $cvvError.hide();
 
 const validName = (name) => {
   return /^[a-z]+$/i.test(name);
@@ -246,15 +257,17 @@ $button.on('click', function (e){
     if($(this).val() === ""){
       event.preventDefault();
       $(this).css('border-color', 'red');
-      const $error = $('<span id="error">Fill the empty space</span>')
+      const $error = $('<span id="error">Fill the empty space</span>');
       $error.insertBefore($(this));
-      }
+    }
   });
   $('.activities input').each(function(e){
-    const notChecked = $(this).prop('checked');
-    if(!notChecked){
+    if($(this).prop('checked', true)){
+      return false;
+    } else {
       event.preventDefault();
       console.log("check atleast one box")
+
     }
   });
 });
