@@ -267,8 +267,8 @@ $button.on('click', function (e){
       event.preventDefault();
       console.log("box not checked")
     } else if($(this).prop('checked') === true){
-      return false;
       console.log("box checked");
+      return false;
 
     }
   });
