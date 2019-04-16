@@ -164,7 +164,7 @@ $('p').parent().hide();
 $('#payment option[value="select_method"]').prop('disabled', true);
 
 $cardNumber.on('focus', function(e){
-  const $empty = $('<span>Please Enter A Credit Number</span>')
+  const $empty = $('<span>Enter A Credit Number</span>')
   if($(this).val() === ""){
     $empty.insertBefore($cardNumber);
   } else if($(this).val() !== ""){
@@ -254,19 +254,19 @@ $cvv.on('input', creatorOfListeners(validCvv));
 
 $button.on('click', function (e){
   $('input:not(#other-title)').each(function(e){
+    const $error = $('<span id="error">No empty spaces</span>');
     if($(this).val() === ""){
       event.preventDefault();
       $(this).css('border-color', 'red');
-      const $error = $('<span id="error">Fill the empty space</span>');
       $error.insertBefore($(this));
     }
   });
   $('.activities input').each(function(e){
     if($(this).prop('checked', true)){
       return false;
+      console.log("box checked")
     } else {
       event.preventDefault();
-      console.log("check atleast one box")
 
     }
   });
