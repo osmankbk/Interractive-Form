@@ -253,7 +253,7 @@ $zip.on('input', creatorOfListeners(validZib));
 $cvv.on('input', creatorOfListeners(validCvv));
 
               //HELP 2
-$button.on('click', function (e){
+$button.on('click', function (){
   $('input:not(#other-title)').each(function(e){
     const $error = $('<span id="error">No empty spaces</span>');
     if($(this).val() === ""){
@@ -262,14 +262,13 @@ $button.on('click', function (e){
       $error.insertBefore($(this));
     }
   });
-  $('.activities input').each(function(e){
+  $('.activities input').each(function(index, value){
     if($(this).prop('checked') === false){
       event.preventDefault();
-      console.log("box not checked")
+      console.log(value);
     } else if($(this).prop('checked') === true){
       console.log("box checked");
       return false;
-
     }
   });
 });
