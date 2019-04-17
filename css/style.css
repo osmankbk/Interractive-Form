@@ -101,6 +101,43 @@ legend {
   padding: 7px 10px;
   color: #fff;
 }
+
+#cardError{
+  border-radius: 5px;
+  font-size: .75em;
+  position: absolute;
+  text-align: center;
+  left: 38.5%;
+  top: 1012px;
+  width: 160px;
+  padding: 7px 10px;
+  color: #fff;
+}
+
+#zipError{
+  border-radius: 5px;
+  font-size: .75em;
+  position: absolute;
+  text-align: center;
+  left: 52.3%;
+  top: 1012px;
+  width: 160px;
+  padding: 7px 10px;
+  color: #fff;
+}
+
+#cvvError{
+  border-radius: 5px;
+  font-size: .75em;
+  position: absolute;
+  text-align: center;
+  left: 65%;
+  top: 1012px;
+  width: 160px;
+  padding: 7px 10px;
+  color: #fff;
+}
+
 #error {
   font-size: 1em;
   color: red;

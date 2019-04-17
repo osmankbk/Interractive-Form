@@ -166,8 +166,10 @@ $('#payment option[value="select_method"]').prop('disabled', true);
           //Help 1: the span is not hiding when the input is not empty
 $cardNumber.on('focus', function(e){
   const $empty = $('<span>Enter A Credit Number</span>')
-  if($(this).val() === ""){
-    $empty.insertBefore($cardNumber);
+  if($(this).val() !== ""){
+    $empty.hide();
+    } else {
+      $empty.insertBefore($cardNumber);
     }
   });
 
@@ -201,12 +203,12 @@ $($cardError).insertAfter($cardNumber);
 $($cardError).css('color', 'red');
 $cardError.hide();
 
-const $zipError = $('<span id="cardError">Enter 5 Digits</span>');
+const $zipError = $('<span id="zipError">5 Digits</span>');
 $($zipError).insertAfter($zip);
 $($zipError).css('color', 'red');
 $zipError.hide();
 
-const $cvvError = $('<span id="cardError">Enter 3 Digits</span>');
+const $cvvError = $('<span id="cvvError">3 Digits</span>');
   $($cvvError).css('color', 'red');
   $($cvvError).insertAfter($cvv);
   $cvvError.hide();
@@ -255,11 +257,12 @@ $cvv.on('input', creatorOfListeners(validCvv));
               //HELP 2
 $button.on('click', function (){
   $('input:not(#other-title)').each(function(e){
-    const $error = $('<span id="error">No empty spaces</span>');
+    const $error = $('<span id="error">Enter Input</span>');
     if($(this).val() === ""){
       event.preventDefault();
       $(this).css('border-color', 'red');
       $error.insertBefore($(this));
+      $error.delay(1000).fadeOut(1000);
     }
   });
   $('.activities input').each(function(index, value){
