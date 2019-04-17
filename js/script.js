@@ -1,5 +1,6 @@
 const $name = $('#name');
 const $email = $('#mail');
+const $cardDiv = $('#credit-card');
 const $cardNumber = $('#cc-num');
 const $zip = $('#zip');
 const $cvv = $('#cvv');
@@ -117,13 +118,16 @@ $cardNumber.on('input', function(e) {
 });
 $payment.on('change', function() {
 	if ($('#payment option:selected').val() === 'credit card') {
+		$cardDiv.insertAfter('#payment');
 		$('p').parent().hide();
 		$('#credit-card').show();
 	} else if ($('#payment option:selected').val() === 'paypal') {
+		$cardDiv.detach();
 		$("p:eq(0)").parent().show();
 		$('#credit-card').hide();
 		$("p:eq(1)").parent().hide();
 	} else if ($('#payment option:selected').val() === 'bitcoin') {
+		$cardDiv.detach();
 		$("p:eq(1)").parent().show();
 		$('#credit-card').hide();
 		$("p:eq(0)").parent().hide();
@@ -184,24 +188,31 @@ $email.on('input', creatorOfListeners(validEmail));
 $cardNumber.on('input', creatorOfListeners(validCardNum));
 $zip.on('input', creatorOfListeners(validZib));
 $cvv.on('input', creatorOfListeners(validCvv));
-//HELP 2
+
+const $checkboxError = $('<span id="error">Please select an activity</span>');
 $button.on('click', function(e) {
 	$('input:not(#other-title)').each(function(e) {
 		const $error = $('<span id="error">Enter Input</span>');
 		if ($(this).val() === "") {
 			event.preventDefault();
+			$cardError.css('top', '1030px');
+			$zipError.css('top', '1030px');
+			$cvvError.css('top', '1030px');
 			$(this).css('border-color', 'red');
 			$error.insertBefore($(this));
 			$error.delay(1000).fadeOut(1000);
+		} else if ($(this).val() !== "") {
+			$(this).css('border-color', '#5e97b0');
 		}
 	})
-	$('.activities input').each(function(e) {
-		if ($(this).prop('checked') === true) {
-			return false;
-			console.log($(this));
-		} else {
-			event.preventDefault();
-			console.log("box not checked");
-		}
-	});
+	if ($('input:checked').length <= 0) {
+		$checkboxError.show();
+		$checkboxError.insertAfter('.activities');
+		event.preventDefault();
+		$cardError.css('top', '1030px');
+		$zipError.css('top', '1030px');
+		$cvvError.css('top', '1030px');
+	} else {
+		$checkboxError.hide();
+	}
 });
