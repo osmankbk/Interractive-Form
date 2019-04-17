@@ -1,3 +1,11 @@
+/******************************************
+Treehouse Techdegree:
+FSJS project 3 - Interactive Form
+******************************************/
+
+// Study guide for this project - https://teamtreehouse.com/projects/interactive-form
+
+
 const $name = $('#name');
 const $email = $('#mail');
 const $cardDiv = $('#credit-card');
