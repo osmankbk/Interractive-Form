@@ -64,7 +64,7 @@ legend {
 	margin-bottom: 1.125em;
 }
 
-labe {
+label {
   color: #000;
   display: block;
   margin-bottom: .5em;
@@ -79,7 +79,7 @@ legend {
 #nameError {
   border-radius: 5px;
   font-size: .75em;
-  position: absolute;
+  position: inherit;
   text-align: center;
   left: 60.5%;
   background: red;
@@ -92,47 +92,11 @@ legend {
 #emailError {
   border-radius: 5px;
   font-size: .75em;
-  position: absolute;
+  position: inherit;
   text-align: center;
   left: 60.5%;
   background: red;
   top: 394px;
-  width: 160px;
-  padding: 7px 10px;
-  color: #fff;
-}
-
-#cardError{
-  border-radius: 5px;
-  font-size: .75em;
-  position: absolute;
-  text-align: center;
-  left: 38.5%;
-  top: 1012px;
-  width: 160px;
-  padding: 7px 10px;
-  color: #fff;
-}
-
-#zipError{
-  border-radius: 5px;
-  font-size: .75em;
-  position: absolute;
-  text-align: center;
-  left: 52.3%;
-  top: 1012px;
-  width: 160px;
-  padding: 7px 10px;
-  color: #fff;
-}
-
-#cvvError{
-  border-radius: 5px;
-  font-size: .75em;
-  position: absolute;
-  text-align: center;
-  left: 65%;
-  top: 1012px;
   width: 160px;
   padding: 7px 10px;
   color: #fff;
