@@ -247,9 +247,6 @@ $button.on('click', function(e) {
 		const $error = $('<span id="error">Enter Input</span>');
 		if ($(this).val() === "") {
 			event.preventDefault();
-			$cardError.css('top', '1030px');
-			$zipError.css('top', '1030px');
-			$cvvError.css('top', '1030px');
 			$(this).css('border-color', 'red');
 			$error.insertBefore($(this));
 			$error.delay(1000).fadeOut(1000);
@@ -261,9 +258,6 @@ $button.on('click', function(e) {
 		$checkboxError.show();
 		$checkboxError.insertAfter('.activities');
 		event.preventDefault();
-		$cardError.css('top', '1030px');
-		$zipError.css('top', '1030px');
-		$cvvError.css('top', '1030px');
 	} else {
 		$checkboxError.hide();
 	}
