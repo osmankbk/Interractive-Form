@@ -39,7 +39,7 @@ $title.on('change', function() {
 });
 //DESIGN SECTION
 //Hide the color menu. Only shows up after an option from the "select theme" is selected
-//Exceed expection(extra credit)
+//Exceed expection: T Shirt Section.
 $colorDiv.hide();
 //The change event that reveals the color menu.
 $design.on('change', function(e) {
@@ -131,7 +131,6 @@ $('#payment option[value="credit card"]').attr('selected', true);
 $('p').parent().hide();
 //This disables the 'select method' option, so that it can't be selected as a payment option.
 $('#payment option[value="select_method"]').prop('disabled', true);
-//(Conditional error message for exceed expectation)
 //created a span element with an error message and insert it 'before' the credit card input.
 const $empty = $('<span>Enter A Credit Card Number</span>');
 //hides it, shows up only when the credit-card input is on focus with a 'focus' event.
@@ -148,6 +147,7 @@ $cardNumber.on('blur', function(e) {
 });
 //With this 'input' event i hide or show the error message depending on whether the input is empty or not.
 //If empty the error message shows, if not it hides.
+//Exceed expectation(card-number input): Conditional Error message.
 $cardNumber.on('input', function(e) {
 	if (event.target.value.length <= 0) {
 		$empty.show()
@@ -176,6 +176,7 @@ $payment.on('change', function() {
 	}
 });
 //VALIDATION SECTION
+//(EXceed expection for all my inputs: Real-time Error Message)
 //All of my inputs are validated, except the other-title input.
 //These are the error messages i created for them, appended and hide them after every input.
 const $nameError = $('<span id="nameError">Please Enter Only Letters!</span>');
