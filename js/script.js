@@ -195,8 +195,7 @@ const $cvvError = $('<span id="cvvError">3 Digits</span>');
 $($cvvError).css('color', 'red');
 $($cvvError).insertAfter($cvv);
 $cvvError.hide();
-//My validation code for every text input.
-//let soValidName = false;
+//My validation code for every text input. The returns True if the input value matches the regex, and false otherwise.
 const validName = (name) => {
 	const trueName = /^[a-z]+$/i.test(name);
 	if (trueName) {
@@ -246,7 +245,7 @@ const tipAppear = (show, element) => {
 	}
 }
 //This is a DRY function that takes in the validators i wrote as arguments--
-//And check the targeted input value if it matches validating code.
+//And check the targeted input value if it matches validating code..sends out error message if it doesn't.
 const creatorOfListeners = (validator) => {
 	return e => {
 		const text = e.target.value;
