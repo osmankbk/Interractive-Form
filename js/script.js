@@ -2,14 +2,12 @@
 Treehouse Techdegree:
 FSJS project 3 - Interactive Form
 ******************************************/
-
 //Title: Treehouse Project 3
 //Project: Interactive Form
 //Goal: exceed expectation
-
 //If i get anything less than exceed expectation, please fail it so i can try for exceed expectation again. Thank You.
-
 //Selected diffentent parts of the form and store them in variables i'll be calling throught the project
+const $form = $('#form');
 const $name = $('#name');
 const $email = $('#mail');
 const $cardDiv = $('#credit-card');
@@ -198,20 +196,46 @@ $($cvvError).css('color', 'red');
 $($cvvError).insertAfter($cvv);
 $cvvError.hide();
 //My validation code for every text input.
+//let soValidName = false;
 const validName = (name) => {
-	return /^[a-z]+$/i.test(name);
+	const trueName = /^[a-z]+$/i.test(name);
+	if (trueName) {
+		return true;
+	} else {
+		return false;
+	}
 }
 const validEmail = (email) => {
-	return /^[^@]+@[a-z]+\.[a-z]+$/i.test(email);
+	const trueEmail = /^[^@]+@[a-z]+\.[a-z]+$/i.test(email);
+	if (trueEmail) {
+		return true;
+	} else {
+		return false;
+	}
 }
 const validCardNum = (card) => {
-	return /^\d{13}(?:\d{3})?$/.test(card);
+	const trueCard = /^\d{13}(?:\d{3})?$/.test(card);
+	if (trueCard) {
+		return true;
+	} else {
+		return false;
+	}
 }
 const validZib = (zip) => {
-	return /^\d{5}$/.test(zip);
+	const trueZip = /^\d{5}$/.test(zip);
+	if (trueZip) {
+		return true;
+	} else {
+		return false;
+	}
 }
 const validCvv = (cvv) => {
-	return /^\d{3}$/.test(cvv);
+	const trueCvv = /^\d{3}$/.test(cvv);
+	if (trueCvv) {
+		return true;
+	} else {
+		return false;
+	}
 }
 //The function that shows or hides my validation error/tip messages
 const tipAppear = (show, element) => {
@@ -231,7 +255,7 @@ const creatorOfListeners = (validator) => {
 		const tip = e.target.nextElementSibling;
 		tipAppear(showTip, tip);
 	};
-}
+};
 //The eventListeners for my validators, that took the creatorOfListeners function as argument.
 $name.on('input', creatorOfListeners(validName));
 $email.on('input', creatorOfListeners(validEmail));
@@ -240,9 +264,17 @@ $zip.on('input', creatorOfListeners(validZib));
 $cvv.on('input', creatorOfListeners(validCvv));
 //Span element with the error message for the activity input checkboxes.
 const $checkboxError = $('<span id="error">Please select an activity</span>');
-//The submit button click event that prevent the page from submitting if an input field is empty--
-//or at least one checkbox is not checked.
-$button.on('click', function(e) {
+//The submit form "submit" event that prevents the page from submitting if an input field is empty--
+//incorrect validation or at least one checkbox is not checked.
+$form.on('submit', function(e) {
+	const nameInput = validName($name.val());
+	const emailInput = validEmail($email.val());
+	const cardInput = validCardNum($cardNumber.val());
+	const zipInput = validZib($zip.val());
+	const cvvInput = validCvv($cvv.val());
+	if (!nameInput || !emailInput || !cardInput || !zipInput || !cvvInput) {
+		event.preventDefault();
+	}
 	$('input:not(#other-title)').each(function(e) {
 		const $error = $('<span id="error">Enter Input</span>');
 		if ($(this).val() === "") {
