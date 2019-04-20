@@ -61,8 +61,7 @@ $design.on('change', function() {
 		$('#color option[value="tomato"]').attr('selected', 'selected');
 	} else {
 		$('#color option').removeAttr("selected");
-		$('#color option[value="cornflowerblue"]').attr('selected', 'selected');
-		$('#color option').show();
+		$colorDiv.hide();
 	}
 });
 //ACTIVITIES SECTION
@@ -183,7 +182,7 @@ $nameError.hide();
 const $emailError = $('<span id="emailError">Please Enter A Valid Email Address!</span>');
 $($emailError).insertAfter($email);
 $emailError.hide();
-const $cardError = $('<span id="cardError">Enter 13 or 16 Digits</span>');
+const $cardError = $('<span id="cardError">Enter 13 to 16 digits</span>');
 $($cardError).insertAfter($cardNumber);
 $($cardError).css('color', 'red');
 $cardError.hide();
@@ -213,7 +212,7 @@ const validEmail = (email) => {
 	}
 }
 const validCardNum = (card) => {
-	const trueCard = /^\d{13}(?:\d{3})?$/.test(card);
+	const trueCard = /^\d{13,16}$/.test(card);
 	if (trueCard) {
 		return true;
 	} else {
@@ -271,9 +270,11 @@ $form.on('submit', function(e) {
 	const cardInput = validCardNum($cardNumber.val());
 	const zipInput = validZib($zip.val());
 	const cvvInput = validCvv($cvv.val());
+	if ($('#payment option:selected').val() === 'credit card'){
 	if (!nameInput || !emailInput || !cardInput || !zipInput || !cvvInput) {
 		event.preventDefault();
 	}
+}
 	$('input:not(#other-title)').each(function(e) {
 		const $error = $('<span id="error">Enter Input</span>');
 		if ($(this).val() === "") {
