@@ -274,7 +274,14 @@ $form.on('submit', function(e) {
 	if (!nameInput || !emailInput || !cardInput || !zipInput || !cvvInput) {
 		event.preventDefault();
 	}
-}
+}  else if ($('#payment option:selected').val() === 'paypal') {
+	if (!nameInput || !emailInput) {
+		event.preventDefault();
+	}
+}	else if ($('#payment option:selected').val() === 'bitcoin'){
+}	if (!nameInput || !emailInput) {
+		event.preventDefault();
+	}
 	$('input:not(#other-title)').each(function(e) {
 		const $error = $('<span id="error">Enter Input</span>');
 		if ($(this).val() === "") {
