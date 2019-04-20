@@ -176,7 +176,7 @@ $payment.on('change', function() {
 //(EXceed expection for all my inputs: Real-time Error Message)
 //All of my inputs are validated, except the other-title input.
 //These are the error messages i created for them, appended and hide them after every input.
-const $nameError = $('<span id="nameError">Please Enter Only Letters!</span>');
+const $nameError = $('<span id="nameError">Please Enter Letters Only!</span>');
 $($nameError).insertAfter($name);
 $nameError.hide();
 const $emailError = $('<span id="emailError">Please Enter A Valid Email Address!</span>');
